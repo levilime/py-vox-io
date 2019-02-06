@@ -50,7 +50,8 @@ class Chunk(object):
                     offset += 4
 
             self.material = Material(_id, _type, weight, props)
-
+        elif id == b'nTRN':
+            print("Encountered " + b'nTRN' + "Don't know what to do with, ignoring")
         else:
             raise ParsingException('Unknown chunk type: %s'%self.id)
 
@@ -109,9 +110,7 @@ class VoxParser(object):
             else:
                 palette = None
 
-            materials = [ c.material for c in chunks ]
-
-            return Vox(models, palette, materials)
+            return Vox(models, palette, [])
 
 
 
